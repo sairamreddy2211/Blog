@@ -1,0 +1,61 @@
+<%- include("partials/head.ejs") %>
+<div class="img-fluid img-thumbnail" style="width:50%;margin:20px auto">
+<div class="text-center" style="margin:20px">
+	<h2><%=blog.name%></h2>
+	<img class=" w-50 p-3 h-50 d-inline-block" src="<%=blog.image%>">
+	<p><i>uploaded by :<%=blog.author.username%></i></p>
+	<p><%=blog.date%></p>
+	<p><%=blog.desc%></p><br>
+</div>
+	<%if( currentUser){%>
+	<%if(currentUser._id.equals(blog.author.id)){%>
+	<a href="/blogs/<%=blog._id%>/edit" class="ui button" >Edit</a>
+	<a href="/delete/<%=blog._id%>" class="ui button" >Delete</a>
+	<%}%>
+	<%}%>
+	<hr>
+	<form class="form-inline" action="/blogs/<%=blog._id%>/comments" method="POST">
+  <div class="form-group mx-sm-3 mb-2">
+    <label for="inputPassword2" class="sr-only">Comment</label>
+    <input type="text" class="form-control" id="inputPassword2" placeholder="Comment" name="comment[comment]">
+  </div>
+  <button type="submit" class="btn btn-primary mb-2">Submit</button>
+</form><hr>
+	<h2>Comments</h2>
+	
+	
+	<%blog.comment.forEach(function(c){%>
+	
+		<div class="img-thumbnail" style="padding:15px">	
+		<strong><%=c.author.username%>-</strong>
+		<%=c.comment%>
+			<%if( currentUser){%>
+	<%if(currentUser._id.equals(c.author.id)){%>
+			<a style="float:right" href="/comment/<%=blog._id%>/<%=c._id%>/<%=c.author.id%>/delete" type="button" class="btn btn-primary btn-sm">Delete</a>
+			<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+		<div style="float:right">
+  <span type="button" class="btn btn-primary btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-hidden="true"> edit</span>
+		
+  <div class="dropdown-menu">
+	  <form class="form-inline" action="/comment/<%=blog._id%>/<%=c._id%>/<%=c.author.id%>/edit" method="POST">
+  <div class="form-group mx-sm-3 mb-2">
+    <label for="inputPassword2" class="sr-only">Comment</label>
+    <input type="text" class="form-control" id="inputPassword2" placeholder="Comment" name="comment" value="<%=c.comment%>">
+  </div>
+  <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+</form>
+  </div>
+</div>	
+	
+			
+	<%}%>
+	<%}%>
+	</div>
+	<%})%>
+		
+			
+
+	</div>
+	
+
+<%- include("partials/lower.ejs") %>

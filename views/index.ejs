@@ -1,0 +1,12 @@
+<%- include("partials/head.ejs") %>
+<% blogs.forEach(function(blog){%>
+<div class="text-center img-fluid img-thumbnail" style="width:50%;margin:auto">
+	<h2><%=blog.name%></h2>
+	<img class=" w-50 p-3 h-50 d-inline-block" src="<%=blog.image%>">
+	<p><i>uploaded by :<%=blog.author.username%></i></p>
+	<p><%=blog.date%></p>
+	<p><%=blog.desc%></p>
+	<a href="/blogs/<%= blog._id%>">Read More</a>
+</div>
+<%}) %>
+<%- include("partials/lower.ejs") %>

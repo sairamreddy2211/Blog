@@ -1,0 +1,20 @@
+<%- include("partials/head.ejs") %>
+<form class="ui form" style="width:500px;margin:auto" action="/blogs" method="POST">
+  <div class="field">
+    <label>Name</label>
+    <input type="text" name="blog[name]" placeholder="Name">
+  </div>
+  <div class="field">
+    <label>Image</label>
+    <input type="text" name="blog[image]" placeholder="Image Url">
+  </div>
+	<div class="field">
+    <label>Description</label>
+    <input type="text" name="blog[desc]" placeholder="Description">
+  </div>
+  <button class="ui button" type="submit">Submit</button>
+</form>
+
+
+
+<%- include("partials/lower.ejs") %>

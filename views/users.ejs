@@ -1,0 +1,17 @@
+
+<%- include("partials/head.ejs") %>
+<% users.forEach(function(user){%>
+<div class="text-center img-fluid img-thumbnail" style="width:50%;margin:auto">
+	<h2><%=user.username%></h2>
+	<img class=" w-50 p-3 h-50 d-inline-block" src="#">
+	<a href="/user/<%= user._id%>">Read More</a>
+	<br>
+	<%if(currentUser){%>
+	<a href="/user/add/<%= currentUser._id%>/<%= user._id%>">ADD</a>
+	<%}else(currentUser && (user.fav).includes(user._id) )%>
+	<a href="/user/remove/<%= currentUser._id%>/<%= user._id%>">ADD</a>
+	<%}%>
+
+</div>
+<%}) %>
+<%- include("partials/lower.ejs") %>

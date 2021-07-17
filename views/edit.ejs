@@ -1,0 +1,18 @@
+<%- include("partials/head.ejs") %>
+<form class="ui form" style="width:500px;margin:auto" action="/updated/<%=blog._id%>" method="POST">
+  <div class="field">
+    <label>Name</label>
+    <input type="text" name="blog[name]" value="<%=blog.name %>" >
+  </div>
+  <div class="field">
+    <label>Image</label>
+    <input type="text" name="blog[image]" value="<%=blog.image %>">
+  </div>
+	<div class="field">
+    <label>Description</label>
+    <input type="text" name="blog[desc]" value="<%=blog.desc %>">
+  </div>
+  <button class="ui button" type="submit">Edit</button>
+</form>
+
+<%- include("partials/lower.ejs") %>
